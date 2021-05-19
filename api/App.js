@@ -2,15 +2,10 @@ var express = require("express");
 var cors = require("cors");
 var app = express();
 const api = require("./data.json");
-// const low = require("lowdb");
-// const FileSync = require("lowdb/adapters/FileSync");
-// const adapter = new FileSync("api.json");
-// const api = low(adapter);
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 app.use(cors());
 app.use(express.json());
-// app.api = api;
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -24,7 +19,7 @@ const options = {
       },
     ],
   },
-  apis: ["app.js"], // files containing annotations as above
+  apis: ["App.js"],
 };
 
 const openapiSpecification = swaggerJsDoc(options);

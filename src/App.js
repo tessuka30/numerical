@@ -4,6 +4,9 @@ import { Layout, Menu, Breadcrumb } from "antd";
 import { useState } from "react";
 import Bisection from "./root-of-equation/bisection";
 import Falseposition from "./root-of-equation/false-position";
+import Lagrange from "./interpolation/lagrange";
+import Spline from "./interpolation/spline";
+import Newtondiff from "./interpolation/newtondiff";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function App() {
@@ -76,6 +79,24 @@ function App() {
               <div>
                 <h1>False-Position</h1>
                 <Falseposition />
+              </div>
+            )}
+            {current === "3.1" && (
+              <div>
+                <h1>Newton divided difference</h1>
+                <Newtondiff />
+              </div>
+            )}
+            {current === "3.2" && (
+              <div>
+                <h1>Lagrange Interpolation</h1>
+                <Lagrange />
+              </div>
+            )}
+            {current === "3.3" && (
+              <div>
+                <h1>Cubic Spline</h1>
+                <Spline />
               </div>
             )}
           </div>

@@ -1,8 +1,8 @@
 {
   "Bisection": { "xL": "1.5", "xR": "2", "fx": "x^4-13" },
   "False-Position": { "xL": "0.02", "xR": "0.03", "fx": "1/x-43" },
-  "Newton-Rhapson": { "x0": "2", "fx": "x^4-13" },
-  "Onepoint": { "x0": "2", "fx": "(1/4)+(x/2)" },
+  "Newton-Rhapson": { "x0": "2", "fx": "x^2-7" },
+  "Onepoint": { "x0": "0", "fx": "(1/4)+(x/2)" },
   "Secant": { "x0": "2", "x1": "3", "fx": "x^2-7" },
   "Cramer": {
     "col": 3,
