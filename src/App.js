@@ -7,6 +7,10 @@ import Falseposition from "./root-of-equation/false-position";
 import Lagrange from "./interpolation/lagrange";
 import Spline from "./interpolation/spline";
 import Newtondiff from "./interpolation/newtondiff";
+import Onepoint from "./root-of-equation/onepoint";
+import Newtonrhap from "./root-of-equation/newtonrhapson";
+import Secant from "./root-of-equation/secant";
+import Cramer from "./linear-algebra/cramer";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function App() {
@@ -24,7 +28,7 @@ function App() {
           defaultSelectedKeys={["1"]}
           selectedKeys={[current]}
           mode="inline"
-          onClick={e => {
+          onClick={(e) => {
             setcurrent(e.key);
           }}
         >
@@ -79,6 +83,30 @@ function App() {
               <div>
                 <h1>False-Position</h1>
                 <Falseposition />
+              </div>
+            )}
+            {current === "1.3" && (
+              <div>
+                <h1>Onepoint</h1>
+                <Onepoint />
+              </div>
+            )}
+            {current === "1.4" && (
+              <div>
+                <h1>Newton Rhapson</h1>
+                <Newtonrhap />
+              </div>
+            )}
+            {current === "1.5" && (
+              <div>
+                <h1>Secant</h1>
+                <Secant />
+              </div>
+            )}
+            {current === "2.1" && (
+              <div>
+                <h1>Cramer</h1>
+                <Cramer />
               </div>
             )}
             {current === "3.1" && (
