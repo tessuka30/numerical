@@ -1,5 +1,4 @@
 import react, { useEffect, useState } from "react";
-import { StaticMathField } from "react-mathquill";
 import { InputNumber, Button, Card } from "antd";
 const math = require("mathjs");
 function Cramer() {
@@ -11,6 +10,7 @@ function Cramer() {
   const [show, setShow] = useState([]);
   useEffect(() => {
     if (calA.length !== 0 && calB.length !== 0) {
+      let xans = [];
       let detA = math.det(calA);
       for (let i = 0; i < calA.length; i++) {
         let tempA = math.clone(calA);
@@ -18,17 +18,63 @@ function Cramer() {
           tempA[j][i] = calB[j][0];
         }
         let dettemp = math.det(tempA);
-        let x = dettemp / detA;
-        console.log(x);
+        xans[i] = math.round(dettemp / detA);
       }
+      setShow([
+        <Card title="ANSWER" style={{ width: 300 }}>
+          {xans.map((k, i) => {
+            let x = [];
+            let a = "x" + (i + 1) + ": " + k;
+            x.push(a);
+            x.push(<br />);
+            console.log(x);
+            return x;
+          })}
+        </Card>,
+      ]);
     }
   }, [calA, calB]);
-  // async function example() {
-  //   let x = await fetch("http://localhost:5000/Lagrange")
-  //     .then((res) => res.json())
-  //     .catch((err) => {
-  //       return undefined;
-  //     });
+  async function example() {
+    let x = await fetch("http://localhost:5000/Cramer")
+      .then((res) => res.json())
+      .catch((err) => {
+        return undefined;
+      });
+    if (x !== undefined) {
+      setcol(x.col);
+      let tempdiv = [];
+      for (let j = 0; j < x.col; j++) {
+        let tempcol = [];
+        for (let i = 0; i < x.col; i++) {
+          tempcol.push(
+            <InputNumber
+              id={"inputA" + j + i}
+              placeholder={"a" + (j + 1) + (i + 1)}
+            />
+          );
+        }
+        tempdiv.push(<div>{tempcol}</div>);
+      }
+      setinputA(tempdiv);
+      tempdiv = [];
+      for (let i = 0; i < x.col; i++) {
+        let tempcol = [];
+        tempcol.push(
+          <InputNumber id={"inputB" + i} placeholder={"b" + (i + 1) + "1"} />
+        );
+        tempdiv.push(<div>{tempcol}</div>);
+      }
+      setinputB(tempdiv);
+      for (let j = 0; j < x.col; j++) {
+        for (let i = 0; i < x.col; i++) {
+          document.getElementById("inputA" + j + i).value = x.A[j][i];
+        }
+      }
+      for (let i = 0; i < x.col; i++) {
+        document.getElementById("inputB" + i).value = x.B[i][0];
+      }
+    }
+  }
   async function cal() {
     await setcalA([]);
     await setcalB([]);
@@ -60,17 +106,22 @@ function Cramer() {
       let tempcol = [];
       for (let i = 0; i < col; i++) {
         tempcol.push(
-          <InputNumber id={"inputA" + j + i} placeholder={"a" + j + i} />
+          <InputNumber
+            id={"inputA" + j + i}
+            placeholder={"a" + (j + 1) + (i + 1)}
+          />
         );
       }
-      tempdiv.push(<div key={"a" + j}>{tempcol}</div>);
+      tempdiv.push(<div>{tempcol}</div>);
     }
     setinputA(tempdiv);
     tempdiv = [];
     for (let i = 0; i < col; i++) {
       let tempcol = [];
-      tempcol.push(<InputNumber key={"inputB" + i} id={"inputB" + i} />);
-      tempdiv.push(<div key={"b" + i}>{tempcol}</div>);
+      tempcol.push(
+        <InputNumber id={"inputB" + i} placeholder={"b" + (i + 1) + "1"} />
+      );
+      tempdiv.push(<div>{tempcol}</div>);
     }
     setinputB(tempdiv);
   }
@@ -94,7 +145,9 @@ function Cramer() {
           <Button type="primary" onClick={create}>
             SET
           </Button>
-          {/* <Button onClick={example}>EXAMPLE</Button> */}
+          <Button type="primary" onClick={example}>
+            EXAMPLE
+          </Button>
           {inputA.length !== 0 && inputB.length !== 0 && (
             <div>
               <div style={{ display: "flex", flexDirection: "row" }}>
@@ -109,11 +162,11 @@ function Cramer() {
               </div>
               <br />
               <br />
+              <Button type="primary" onClick={cal}>
+                CALCULATOR
+              </Button>
             </div>
           )}
-          <Button type="primary" onClick={cal}>
-            CALCULATOR
-          </Button>
         </div>
         <div>{show.length !== 0 && show}</div>
       </div>

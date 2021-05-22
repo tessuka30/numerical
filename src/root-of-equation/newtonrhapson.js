@@ -36,13 +36,13 @@ function Newtonrhap() {
     )[0].style.display = "none";
     return () => calculator.destroy();
   });
-  //   async function example() {
-  //     let x = await fetch("http://localhost:5000/Bisection").then((res) =>
-  //       res.json()
-  //     );
-  //     setLatex(x.fx);
-  //     setx(x.x);
-  //   }
+  async function example() {
+    let x = await fetch("http://localhost:5000/Newton-Rhapson").then((res) =>
+      res.json()
+    );
+    setLatex(x.fx);
+    setx(x.x0);
+  }
   function cal() {
     var err = Infinity;
     var dataSource = [];
@@ -82,7 +82,7 @@ function Newtonrhap() {
         />
       </div>
       <div style={{ display: "flex" }}>
-        <h1 style={{ marginRight: 10 }}>x</h1>
+        <h1 style={{ marginRight: 10 }}>x0</h1>
         <InputNumber
           style={{ marginRight: 10 }}
           onChange={(value) => {

@@ -2,7 +2,6 @@ import react, { useEffect, useState } from "react";
 import { StaticMathField } from "react-mathquill";
 import { InputNumber, Button, Card } from "antd";
 import regression from "regression";
-const math = require("mathjs");
 function Linear() {
   const [col, setcol] = useState([]);
   const [inputX, setinputX] = useState([]);
@@ -13,14 +12,13 @@ function Linear() {
   const [show, setShow] = useState([]);
   useEffect(() => {
     if (calX.length !== 0 && calY.length !== 0) {
-        var arr = [];
-        for (let i = 0; i < inter; i++) {
-            arr.push([]);
-            arr[i].push(calX[i]);
-            arr[i].push(calY[i]);
-          }
-      var xi = X;
-      const result = regression.linear(arr);
+      var arr = [];
+      for (let i = 0; i < col; i++) {
+        arr.push([]);
+        arr[i].push(calX[i]);
+        arr[i].push(calY[i]);
+      }
+      const result = regression.linear(arr, { precision: 6 }).predict(X)[1];
       setShow([
         <Card title="ANSWER" style={{ width: 300 }}>
           <StaticMathField>{`f\\left(${X}\\right)=${result}`}</StaticMathField>
@@ -30,8 +28,8 @@ function Linear() {
   }, [calX, calY, X]);
   async function example() {
     let x = await fetch("http://localhost:5000/Linear")
-      .then(res => res.json())
-      .catch(err => {
+      .then((res) => res.json())
+      .catch((err) => {
         return undefined;
       });
     if (x !== undefined) {
@@ -44,15 +42,15 @@ function Linear() {
       let tempdiv = [];
       for (let i = 0; i < x.col; i++) {
         let tempcol = [];
-        tempcol.push(<InputNumber key={"inputX" + i} id={"inputX" + i} />);
-        tempdiv.push(<div key={"x" + i}>{tempcol}</div>);
+        tempcol.push(<InputNumber id={"inputX" + i} />);
+        tempdiv.push(<div>{tempcol}</div>);
       }
       setinputX(tempdiv);
       tempdiv = [];
       for (let i = 0; i < x.col; i++) {
         let tempcol = [];
-        tempcol.push(<InputNumber key={"inputY" + i} id={"inputY" + i} />);
-        tempdiv.push(<div key={"y" + i}>{tempcol}</div>);
+        tempcol.push(<InputNumber id={"inputY" + i} />);
+        tempdiv.push(<div>{tempcol}</div>);
       }
       setinputY(tempdiv);
       for (let i = 0; i < x.col; i++) {
@@ -87,20 +85,20 @@ function Linear() {
     let tempdiv = [];
     for (let i = 0; i < col; i++) {
       let tempcol = [];
-      tempcol.push(<InputNumber key={"inputX" + i} id={"inputX" + i} />);
-      tempdiv.push(<div key={"x" + i}>{tempcol}</div>);
+      tempcol.push(<InputNumber id={"inputX" + i} />);
+      tempdiv.push(<div>{tempcol}</div>);
     }
     setinputX(tempdiv);
     tempdiv = [];
     for (let i = 0; i < col; i++) {
       let tempcol = [];
-      tempcol.push(<InputNumber key={"inputY" + i} id={"inputY" + i} />);
-      tempdiv.push(<div key={"y" + i}>{tempcol}</div>);
+      tempcol.push(<InputNumber id={"inputY" + i} />);
+      tempdiv.push(<div>{tempcol}</div>);
     }
     setinputY(tempdiv);
   }
   return (
-    <react.Fragment>
+    <div>
       <div
         style={{
           display: "flex",
@@ -112,12 +110,16 @@ function Linear() {
           <InputNumber
             min={0}
             value={col}
-            onChange={e => {
+            onChange={(e) => {
               setcol(e);
             }}
           ></InputNumber>
-          <Button onClick={create}>SET</Button>
-          <Button onClick={example}>EXAMPLE</Button>
+          <Button type="primary" onClick={create}>
+            SET
+          </Button>
+          <Button type="primary" onClick={example}>
+            EXAMPLE
+          </Button>
           {inputX.length !== 0 && inputY.length !== 0 && (
             <div>
               <div style={{ display: "flex", flexDirection: "row" }}>
@@ -133,20 +135,19 @@ function Linear() {
               <h2>X predict</h2>
               <InputNumber
                 value={X}
-                onChange={e => {
+                onChange={(e) => {
                   setX(e);
-                  setcalX([]);
-                  setcalY([]);
-                  setShow([]);
                 }}
               />
-              <Button onClick={cal}>CALCULATOR</Button>
+              <Button type="primary" onClick={cal}>
+                CALCULATOR
+              </Button>
             </div>
           )}
         </div>
         <div>{show.length !== 0 && show}</div>
       </div>
-    </react.Fragment>
+    </div>
   );
 }
 export default Linear;

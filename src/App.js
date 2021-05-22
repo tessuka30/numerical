@@ -11,6 +11,10 @@ import Onepoint from "./root-of-equation/onepoint";
 import Newtonrhap from "./root-of-equation/newtonrhapson";
 import Secant from "./root-of-equation/secant";
 import Cramer from "./linear-algebra/cramer";
+import Gausselim from "./linear-algebra/gausselim";
+import Linear from "./least squares/linear";
+import Poly from "./least squares/polynomial";
+import Multi from "./least squares/multilinear";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function App() {
@@ -27,7 +31,7 @@ function App() {
           theme="dark"
           defaultSelectedKeys={["1"]}
           selectedKeys={[current]}
-          mode="inline"
+          mode="vertical"
           onClick={(e) => {
             setcurrent(e.key);
           }}
@@ -69,8 +73,11 @@ function App() {
             style={{ padding: 24, minHeight: 360 }}
           >
             {current === "0" && (
-              <div>
-                <h1>Home</h1>
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src="https://media4.giphy.com/media/l2JdTgYZ7VG4EeBVe/giphy.gif?cid=ecf05e476nm2w3c05hyy6zfw4ibqhozdwlbbpg54w0kgj4ob&rid=giphy.gif&ct=g"
+                  alt="stonk"
+                ></img>
               </div>
             )}
             {current === "1.1" && (
@@ -109,6 +116,12 @@ function App() {
                 <Cramer />
               </div>
             )}
+            {current === "2.2" && (
+              <div>
+                <h1>Gauss Elimination</h1>
+                <Gausselim />
+              </div>
+            )}
             {current === "3.1" && (
               <div>
                 <h1>Newton divided difference</h1>
@@ -125,6 +138,24 @@ function App() {
               <div>
                 <h1>Cubic Spline</h1>
                 <Spline />
+              </div>
+            )}
+            {current === "4.1" && (
+              <div>
+                <h1>Linear</h1>
+                <Linear />
+              </div>
+            )}
+            {current === "4.2" && (
+              <div>
+                <h1>Polynomial</h1>
+                <Poly />
+              </div>
+            )}
+            {current === "4.3" && (
+              <div>
+                <h1>Multiple-Linear</h1>
+                <Multi />
               </div>
             )}
           </div>

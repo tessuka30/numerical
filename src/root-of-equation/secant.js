@@ -42,13 +42,14 @@ function Secant() {
     )[0].style.display = "none";
     return () => calculator.destroy();
   });
-  //   async function example() {
-  //     let x = await fetch("http://localhost:5000/Bisection").then((res) =>
-  //       res.json()
-  //     );
-  //     setLatex(x.fx);
-  //     setx(x.x);
-  //   }
+  async function example() {
+    let x = await fetch("http://localhost:5000/Secant").then((res) =>
+      res.json()
+    );
+    setLatex(x.fx);
+    setx0(x.x0);
+    setx1(x.x1);
+  }
   function cal() {
     var err = Infinity;
     var dataSource = [];
@@ -117,9 +118,9 @@ function Secant() {
       <Button type="primary" onClick={cal}>
         Submit
       </Button>
-      {/* <Button type="primary" onClick={example}>
+      <Button type="primary" onClick={example}>
         Example
-      </Button> */}
+      </Button>
       <div id="calculator" style={{ width: 600, height: 300 }}></div>
       {sh}
     </div>

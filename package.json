@@ -11,6 +11,8 @@
     "cubic-spline": "^3.0.3",
     "desmos": "^1.5.4",
     "mathjs": "^9.3.2",
+    "ml-regression-multivariate-linear": "^2.0.3",
+    "multiregress": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-mathquill": "^1.0.1",
