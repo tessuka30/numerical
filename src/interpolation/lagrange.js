@@ -150,7 +150,7 @@ function Lagrange() {
     setinputY(tempdiv);
   }
   return (
-    <react.Fragment>
+    <div>
       <div
         style={{
           display: "flex",
@@ -225,7 +225,7 @@ function Lagrange() {
         </div>
         <div>{show.length !== 0 && show}</div>
       </div>
-    </react.Fragment>
+    </div>
   );
 }
 export default Lagrange;

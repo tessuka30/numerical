@@ -164,7 +164,7 @@ function Newtondiff() {
     setinputY(tempdiv);
   }
   return (
-    <react.Fragment>
+    <div>
       <div
         style={{
           display: "flex",
@@ -239,7 +239,7 @@ function Newtondiff() {
         </div>
         <div>{show.length !== 0 && show}</div>
       </div>
-    </react.Fragment>
+    </div>
   );
 }
 export default Newtondiff;

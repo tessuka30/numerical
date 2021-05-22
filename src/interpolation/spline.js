@@ -96,7 +96,7 @@ function Spline() {
     setinputY(tempdiv);
   }
   return (
-    <react.Fragment>
+    <div>
       <div
         style={{
           display: "flex",
@@ -104,6 +104,7 @@ function Spline() {
           justifyContent: "space-around",
         }}
       >
+        <h1>Spline</h1>
         <div>
           <InputNumber
             min={0}
@@ -148,7 +149,7 @@ function Spline() {
         </div>
         <div>{show.length !== 0 && show}</div>
       </div>
-    </react.Fragment>
+    </div>
   );
 }
 export default Spline;

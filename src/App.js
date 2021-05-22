@@ -171,7 +171,6 @@ function App() {
             )}
             {current === "3.3" && (
               <div>
-                <h1>Cubic Spline</h1>
                 <Spline />
               </div>
             )}
