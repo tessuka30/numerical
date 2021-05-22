@@ -10,6 +10,8 @@
     "antd": "^4.15.3",
     "cubic-spline": "^3.0.3",
     "desmos": "^1.5.4",
+    "gaussian-elimination": "^1.0.2",
+    "linear-equation-system": "^1.1.1",
     "mathjs": "^9.3.2",
     "ml-regression-multivariate-linear": "^2.0.3",
     "multiregress": "^1.0.0",

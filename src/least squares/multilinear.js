@@ -41,13 +41,6 @@ function Multi() {
     if (x !== undefined) {
       setcol(x.col);
       setrow(x.row);
-      await setinputX([]);
-      await setinputY([]);
-      await setcalX([]);
-      await setcalY([]);
-      await setX([]);
-      await setxp([]);
-      await setShow([]);
       let tempdiv = [];
       for (let i = 0; i < x.col; i++) {
         let tempcol = [];

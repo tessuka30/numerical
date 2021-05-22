@@ -36,7 +36,7 @@ function Secant() {
     var elt = document.getElementById("calculator");
     var calculator = Desmos.GraphingCalculator(elt, { expressions: false });
     calculator.setExpression({ id: "graph1", latex });
-    //calculator.setExpression({ id: "graph2", latex: `${xL} < x < ${xR}` });
+    calculator.setExpression({ id: "graph2", latex: `${x0} < x < ${x1}` });
     document.getElementsByClassName(
       "dcg-graphpaper-branding"
     )[0].style.display = "none";

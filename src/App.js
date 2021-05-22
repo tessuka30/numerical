@@ -12,10 +12,15 @@ import Newtonrhap from "./root-of-equation/newtonrhapson";
 import Secant from "./root-of-equation/secant";
 import Cramer from "./linear-algebra/cramer";
 import Gausselim from "./linear-algebra/gausselim";
+import Gaussjordan from "./linear-algebra/gaussjordan";
+import LU from "./linear-algebra/lu";
+import Jacobi from "./linear-algebra/jacobi";
+import Gaussseidel from "./linear-algebra/gaussseidel";
+import Conjugate from "./linear-algebra/conjugate";
 import Linear from "./least squares/linear";
 import Poly from "./least squares/polynomial";
 import Multi from "./least squares/multilinear";
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function App() {
   const [collapsed, setcollapsed] = useState(false);
@@ -120,6 +125,36 @@ function App() {
               <div>
                 <h1>Gauss Elimination</h1>
                 <Gausselim />
+              </div>
+            )}
+            {current === "2.3" && (
+              <div>
+                <h1>Gauss Jordan</h1>
+                <Gaussjordan />
+              </div>
+            )}
+            {current === "2.4" && (
+              <div>
+                <h1>LU Decomposition</h1>
+                <LU />
+              </div>
+            )}
+            {current === "2.5" && (
+              <div>
+                <h1>Jacobi</h1>
+                <Jacobi />
+              </div>
+            )}
+            {current === "2.6" && (
+              <div>
+                <h1>Gauss seidel</h1>
+                <Gaussseidel />
+              </div>
+            )}
+            {current === "2.7" && (
+              <div>
+                <h1>Conjugate gradient</h1>
+                <Conjugate />
               </div>
             )}
             {current === "3.1" && (

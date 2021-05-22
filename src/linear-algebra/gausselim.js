@@ -1,7 +1,7 @@
-import react, { useEffect, useState } from "react";
-import { StaticMathField } from "react-mathquill";
+import { useEffect, useState } from "react";
 import { InputNumber, Button, Card } from "antd";
 const math = require("mathjs");
+const gauss = require("gaussian-elimination");
 function Gausselim() {
   const [col, setcol] = useState([]);
   const [inputA, setinputA] = useState([]);
@@ -11,24 +11,19 @@ function Gausselim() {
   const [show, setShow] = useState([]);
   useEffect(() => {
     if (calA.length !== 0 && calB.length !== 0) {
-      let xans = [];
-      let detA = math.det(calA);
-      for (let i = 0; i < calA.length; i++) {
-        let tempA = math.clone(calA);
-        for (let j = 0; j < calA.length; j++) {
-          tempA[j][i] = calB[j][0];
-        }
-        let dettemp = math.det(tempA);
-        xans[i] = math.round(dettemp / detA);
+      let A = math.clone(calA);
+      for (let i = 0; i < col; i++) {
+        A[i].push(calB[i]);
       }
+      console.log(A);
+      let xans = gauss(A);
       setShow([
         <Card title="ANSWER" style={{ width: 300 }}>
           {xans.map((k, i) => {
             let x = [];
-            let a = "x" + (i + 1) + ": " + k;
+            let a = "x" + (i + 1) + ": " + math.round(k);
             x.push(a);
             x.push(<br />);
-            console.log(x);
             return x;
           })}
         </Card>,
@@ -36,7 +31,7 @@ function Gausselim() {
     }
   }, [calA, calB]);
   async function example() {
-    let x = await fetch("http://localhost:5000/Cramer")
+    let x = await fetch("http://localhost:5000/Gausse-Elim")
       .then((res) => res.json())
       .catch((err) => {
         return undefined;

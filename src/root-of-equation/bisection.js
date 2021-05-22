@@ -48,7 +48,7 @@ function Bisection() {
     return () => calculator.destroy();
   });
   async function example() {
-    let x = await fetch("http://localhost:5000/Bisection").then(res =>
+    let x = await fetch("http://localhost:5000/Bisection").then((res) =>
       res.json()
     );
     setLatex(x.fx);
@@ -102,7 +102,7 @@ function Bisection() {
         <EditableMathField
           style={{ width: 300, height: 30 }}
           latex={latex}
-          onChange={mathField => {
+          onChange={(mathField) => {
             setLatex(mathField.latex());
           }}
         />
@@ -111,14 +111,14 @@ function Bisection() {
         <h1 style={{ marginRight: 10 }}>xL</h1>
         <InputNumber
           style={{ marginRight: 10 }}
-          onChange={value => {
+          onChange={(value) => {
             setxL(value);
           }}
           value={xL}
         />
         <h1 style={{ marginRight: 10 }}>xR</h1>
         <InputNumber
-          onChange={value => {
+          onChange={(value) => {
             setxR(value);
           }}
           value={xR}

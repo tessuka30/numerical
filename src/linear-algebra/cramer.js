@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { InputNumber, Button, Card } from "antd";
 const math = require("mathjs");
 function Cramer() {
@@ -98,8 +98,6 @@ function Cramer() {
   async function create() {
     await setinputA([]);
     await setinputB([]);
-    await setcalA([]);
-    await setcalB([]);
     await setShow([]);
     let tempdiv = [];
     for (let j = 0; j < col; j++) {
