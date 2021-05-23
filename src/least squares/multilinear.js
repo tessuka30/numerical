@@ -145,7 +145,7 @@ function Multi() {
       >
         <div>
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <h3 style={{ marginRight: 10 }}>Column</h3>
+            <h3 style={{ marginRight: 10 }}>x in Column</h3>
             <InputNumber
               style={{ marginRight: 10 }}
               min={0}
@@ -154,7 +154,7 @@ function Multi() {
                 setcol(e);
               }}
             />
-            <h3 style={{ marginRight: 10 }}>Row</h3>
+            <h3 style={{ marginRight: 10 }}>x Number</h3>
             <InputNumber
               min={0}
               value={row}
