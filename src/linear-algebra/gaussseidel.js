@@ -21,7 +21,7 @@ function Gaussseidel() {
       var Xinew = math.clone(calX);
       var dataSource = [];
       var count = 1;
-      while (err[0] > 0.0000001) {
+      while (math.max(err) > 0.000001) {
         for (let i = 0; i < col; i++) {
           let sum = 0;
           for (let j = 0; j < col; j++) {
@@ -51,9 +51,7 @@ function Gaussseidel() {
             };
           }
         }
-        if (count === 7) {
-          break;
-        }
+
         count++;
       }
       setShow(<Table dataSource={dataSource} columns={columns} />);
